@@ -56,7 +56,7 @@ class MarkdownTranslator(Translator):
 
     def depart_desc_annotation(self, node):
         # annotation, e.g 'method', 'class'
-        if self.get_current_output('body')[-1][:-1] == "class":
+        if self.get_current_output('body')[-1][:-1] == "class ":
             self.get_current_output('body')[-1] = ""
         else:
             self.get_current_output('body')[-1] = self.get_current_output('body')[-1][:-1]
@@ -178,7 +178,7 @@ class MarkdownTranslator(Translator):
 
     def visit_warning(self, node):
         """Sphinx warning directive."""
-        self.add(':warning: ')
+        self.add('**Warning** ')
 
     def depart_warning(self, node):
         """Sphinx warning directive."""
@@ -186,7 +186,7 @@ class MarkdownTranslator(Translator):
 
     def visit_note(self, node):
         """Sphinx note directive."""
-        self.add(':note: ')
+        self.add('**Note** ')
 
     def depart_note(self, node):
         """Sphinx note directive."""
