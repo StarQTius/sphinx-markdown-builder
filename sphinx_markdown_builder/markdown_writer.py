@@ -56,8 +56,11 @@ class MarkdownTranslator(Translator):
 
     def depart_desc_annotation(self, node):
         # annotation, e.g 'method', 'class'
-        self.get_current_output('body')[-1] = self.get_current_output('body')[-1][:-1]
-        self.add(']')
+        if self.get_current_output('body')[-1][:-1] == "class":
+            self.get_current_output('body')[-1] = ""
+        else:
+            self.get_current_output('body')[-1] = self.get_current_output('body')[-1][:-1]
+            self.add('] ')
     
     def visit_desc_addname(self, node):
         # module preroll for class/method
