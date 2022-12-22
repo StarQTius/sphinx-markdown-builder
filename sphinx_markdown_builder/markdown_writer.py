@@ -52,26 +52,26 @@ class MarkdownTranslator(Translator):
 
     def visit_desc_annotation(self, node):
         # annotation, e.g 'method', 'class'
-        self.add('_')
+        self.add('**')
 
     def depart_desc_annotation(self, node):
         # annotation, e.g 'method', 'class'
         self.get_current_output('body')[-1] = self.get_current_output('body')[-1][:-1]
-        self.add('_ ')
+        self.add('** ')
+    
     def visit_desc_addname(self, node):
         # module preroll for class/method
         pass
 
     def depart_desc_addname(self, node):
         # module preroll for class/method
-        pass
+        self.get_current_output('body')[-1] = ""
 
     def visit_desc_name(self, node):
         # name of the class/method
         # Escape "__" which is a formating string for markdown
         if node.rawsource.startswith("__"):
             self.add('\\')
-        pass
 
     def depart_desc_name(self, node):
         # name of the class/method
@@ -91,7 +91,7 @@ class MarkdownTranslator(Translator):
         # If signature has a non null class, thats means it is a signature
         # of a class method
         if ("class" in node.attributes and node.attributes["class"]):
-            self.add('\n#### ')
+            self.add('\n\n* ')
         else:
             self.add('\n### ')
 
@@ -172,7 +172,7 @@ class MarkdownTranslator(Translator):
 
     def visit_warning(self, node):
         """Sphinx warning directive."""
-        self.add('**WARNING**: ')
+        self.add(':warning: ')
 
     def depart_warning(self, node):
         """Sphinx warning directive."""
@@ -180,7 +180,7 @@ class MarkdownTranslator(Translator):
 
     def visit_note(self, node):
         """Sphinx note directive."""
-        self.add('**NOTE**: ')
+        self.add(':note: ')
 
     def depart_note(self, node):
         """Sphinx note directive."""
