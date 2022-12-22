@@ -99,7 +99,7 @@ class MarkdownTranslator(Translator):
         # the main signature of class/method
         self.add(')')
         if ("class" in node.attributes and node.attributes["class"]):
-            self.add('<\\u>')
+            self.add('</u>')
         self.add('\n')
 
     def visit_desc_parameterlist(self, node):
