@@ -91,7 +91,7 @@ class MarkdownTranslator(Translator):
         # If signature has a non null class, thats means it is a signature
         # of a class method
         if ("class" in node.attributes and node.attributes["class"]):
-            self.add('\n\n*<u> ')
+            self.add('\n\n* <u> ')
         else:
             self.add('\n### ')
 
