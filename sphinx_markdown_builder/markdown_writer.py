@@ -178,7 +178,7 @@ class MarkdownTranslator(Translator):
 
     def visit_warning(self, node):
         """Sphinx warning directive."""
-        self.add('**> Warning** ')
+        self.add('> **Warning** ')
 
     def depart_warning(self, node):
         """Sphinx warning directive."""
@@ -186,7 +186,7 @@ class MarkdownTranslator(Translator):
 
     def visit_note(self, node):
         """Sphinx note directive."""
-        self.add('**> Note** ')
+        self.add('> **Note** ')
 
     def depart_note(self, node):
         """Sphinx note directive."""
