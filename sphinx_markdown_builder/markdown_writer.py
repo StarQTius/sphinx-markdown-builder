@@ -52,12 +52,12 @@ class MarkdownTranslator(Translator):
 
     def visit_desc_annotation(self, node):
         # annotation, e.g 'method', 'class'
-        self.add('**')
+        self.add('[')
 
     def depart_desc_annotation(self, node):
         # annotation, e.g 'method', 'class'
         self.get_current_output('body')[-1] = self.get_current_output('body')[-1][:-1]
-        self.add('** ')
+        self.add(']')
     
     def visit_desc_addname(self, node):
         # module preroll for class/method
@@ -91,7 +91,7 @@ class MarkdownTranslator(Translator):
         # If signature has a non null class, thats means it is a signature
         # of a class method
         if ("class" in node.attributes and node.attributes["class"]):
-            self.add('\n\n* <u> ')
+            self.add('\n\n* **')
         else:
             self.add('\n### ')
 
@@ -99,7 +99,7 @@ class MarkdownTranslator(Translator):
         # the main signature of class/method
         self.add(')')
         if ("class" in node.attributes and node.attributes["class"]):
-            self.add('</u>')
+            self.add('** \n')
         self.add('\n')
 
     def visit_desc_parameterlist(self, node):
