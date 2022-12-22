@@ -56,10 +56,10 @@ class MarkdownTranslator(Translator):
 
     def depart_desc_annotation(self, node):
         # annotation, e.g 'method', 'class'
-        if self.get_current_output('body')[-1][:-1] == "class ":
-            self.get_current_output('body')[-1] = ""
+        if self.get_current_output('body')[-2] == "class":
+            self.get_current_output('body')[-3] = ""
+            self.get_current_output('body')[-2] = ""
         else:
-            self.get_current_output('body')[-1] = self.get_current_output('body')[-1][:-1]
             self.add('] ')
     
     def visit_desc_addname(self, node):
